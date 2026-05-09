@@ -1,0 +1,12 @@
+{
+  "name": "Muhammed Sarhan — Senior Product Designer",
+  "short_name": "moSarhan.io",
+  "description": "Personal archive of work by Muhammed Sarhan, a senior product designer based in Cairo, Egypt.",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#f6f5f2",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

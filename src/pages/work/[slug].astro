@@ -12,9 +12,41 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const project = getProject(slug!)!;
 const next = project.next ? getProject(project.next) : undefined;
+
+const creativeWorkLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": project.title,
+  "headline": project.title,
+  "description": project.blurb,
+  "url": `https://mosarhan.io/work/${project.slug}`,
+  "image": "https://mosarhan.io/og.svg",
+  "creator": { "@type": "Person", "name": "Muhammed Sarhan", "url": "https://mosarhan.io" },
+  "author": { "@type": "Person", "name": "Muhammed Sarhan" },
+  "datePublished": `${project.year}-01-01`,
+  "keywords": project.tag,
+  "about": project.tag,
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mosarhan.io/" },
+    { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://mosarhan.io/work" },
+    { "@type": "ListItem", "position": 3, "name": project.title, "item": `https://mosarhan.io/work/${project.slug}` },
+  ],
+};
 ---
 
-<Layout title={`${project.title} — Mo Sarhan`} description={project.blurb}>
+<Layout
+  title={`${project.title} — Case Study by Muhammed Sarhan`}
+  description={`${project.blurb} — Case study by Muhammed Sarhan, senior product designer in Cairo. Role: ${project.role}.`}
+  type="article"
+  publishedTime={`${project.year}-01-01`}
+  keywords={`${project.title}, ${project.tag}, Muhammed Sarhan case study, product design portfolio`}
+  jsonLd={[creativeWorkLd, breadcrumbLd]}
+>
   <Nav />
 
   <main>

@@ -10,9 +10,43 @@ import About from "../components/About.astro";
 import Approach from "../components/Approach.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "moSarhan.io",
+  "alternateName": "Muhammed Sarhan — Portfolio",
+  "url": "https://mosarhan.io",
+  "inLanguage": "en",
+  "author": { "@type": "Person", "name": "Muhammed Sarhan" },
+};
+
+const profileLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "https://mosarhan.io",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Muhammed Sarhan",
+    "alternateName": ["Mo Sarhan", "moSarhan"],
+    "jobTitle": "Senior Product Designer",
+    "url": "https://mosarhan.io",
+    "image": "https://mosarhan.io/og.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cairo",
+      "addressCountry": "EG",
+    },
+  },
+};
 ---
 
-<Layout>
+<Layout
+  title="Muhammed Sarhan — Senior Product Designer (UI/UX) · Cairo, Egypt"
+  description="Personal archive of Muhammed Sarhan — a senior product designer in Cairo with a decade of UI/UX work across fintech, healthcare, e-commerce, and digital media."
+  type="profile"
+  jsonLd={[websiteLd, profileLd]}
+>
   <Nav />
   <main id="top">
     <Hero />
