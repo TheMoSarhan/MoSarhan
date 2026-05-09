@@ -12,11 +12,12 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
 ---
 
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-[color:var(--color-paper)]/70 border-b border-[color:var(--color-line)]">
-  <nav class="mx-auto max-w-[1280px] px-6 md:px-10 h-14 flex items-center justify-between">
+  <nav aria-label="Primary navigation" class="mx-auto max-w-[1280px] px-6 md:px-10 h-14 flex items-center justify-between">
     <a href={withBase("/")} class="font-medium tracking-tight text-sm">
       mo<span class="text-[color:var(--color-mute)]">sarhan</span>.io
     </a>
 
+    <!-- Desktop links -->
     <ul class="hidden md:flex items-center gap-8 text-sm text-[color:var(--color-mute)]">
       {links.map((l) => {
         const active = currentPath === l.href.replace(/\/$/, "");
@@ -36,11 +37,103 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
       })}
     </ul>
 
+    <!-- Desktop CTA -->
     <a
       href={withBase("/contact")}
-      class="text-sm border border-[color:var(--color-ink)] px-3 py-1.5 rounded-full hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-paper)] transition-colors"
+      class="hidden md:inline text-sm border border-[color:var(--color-ink)] px-3 py-1.5 rounded-full hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-paper)] transition-colors"
     >
       Get in touch
     </a>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="nav-toggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="md:hidden flex flex-col justify-center items-center gap-[5px] w-9 h-9 -mr-1.5 shrink-0"
+    >
+      <span class="nav-bar block w-5 h-px bg-[color:var(--color-ink)] origin-center transition-all duration-300"></span>
+      <span class="nav-bar block w-5 h-px bg-[color:var(--color-ink)] transition-opacity duration-300"></span>
+      <span class="nav-bar block w-5 h-px bg-[color:var(--color-ink)] origin-center transition-all duration-300"></span>
+    </button>
   </nav>
 </header>
+
+<!-- Mobile overlay menu -->
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-label="Navigation menu"
+  aria-hidden="true"
+  class="fixed inset-0 z-[45] flex flex-col bg-[color:var(--color-paper)] px-6 pt-20 pb-10 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden"
+>
+  <ul class="border-t border-[color:var(--color-line)]">
+    {links.map((l) => {
+      const active = currentPath === l.href.replace(/\/$/, "");
+      return (
+        <li class="border-b border-[color:var(--color-line)]">
+          <a
+            href={l.href}
+            class:list={[
+              "serif text-5xl block py-6 transition-colors hover:text-[color:var(--color-mute)]",
+              active && "text-[color:var(--color-ink)]",
+            ]}
+          >
+            {l.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+
+  <div class="mt-auto pt-10 flex items-center justify-between">
+    <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)]">Cairo, Egypt</div>
+    <a
+      href={withBase("/contact")}
+      class="inline-flex items-center gap-3 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] rounded-full pl-5 pr-2 py-2 text-sm"
+    >
+      Get in touch
+      <span class="grid place-items-center w-7 h-7 rounded-full bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById("nav-toggle") as HTMLButtonElement;
+  const menu   = document.getElementById("mobile-menu") as HTMLDivElement;
+  const bars   = toggle.querySelectorAll<HTMLElement>(".nav-bar");
+
+  let isOpen = false;
+
+  function setOpen(next: boolean) {
+    isOpen = next;
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    menu.setAttribute("aria-hidden", String(!isOpen));
+    menu.classList.toggle("translate-x-full", !isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+
+    if (bars[0]) bars[0].style.transform = isOpen ? "translateY(6px) rotate(45deg)" : "";
+    if (bars[1]) bars[1].style.opacity   = isOpen ? "0" : "1";
+    if (bars[2]) bars[2].style.transform = isOpen ? "translateY(-6px) rotate(-45deg)" : "";
+
+    if (isOpen) {
+      (menu.querySelector("a") as HTMLAnchorElement | null)?.focus();
+    } else {
+      toggle.focus();
+    }
+  }
+
+  toggle.addEventListener("click", () => setOpen(!isOpen));
+
+  menu.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => setOpen(false))
+  );
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) setOpen(false);
+  });
+</script>

@@ -5,7 +5,7 @@ import Cursor from "../components/Cursor.astro";
 interface Props {
   title?: string;
   description?: string;
-  /** Path to OG image relative to site root, e.g. "/og.svg" */
+  /** Path to OG image relative to site root, e.g. "/og.png" */
   image?: string;
   /** "website" | "article" | "profile" */
   type?: "website" | "article" | "profile";
@@ -20,9 +20,9 @@ interface Props {
 }
 
 const {
-  title = "Muhammed Sarhan — Senior Product Designer (UI/UX) · Cairo, Egypt",
-  description = "Muhammed Sarhan is a senior product designer based in Cairo, Egypt. 14+ years and 50+ shipped products across three continents — fintech, healthcare, e-commerce, and digital media. Designed with restraint, shipped with intent.",
-  image = "/og.svg",
+  title = "Muhammed Sarhan — Senior Product Designer · Cairo, Egypt",
+  description = "Muhammed Sarhan, senior product designer in Cairo. 14+ years, 50+ products, three continents — fintech, healthcare, e-commerce, and digital media. Designed with restraint.",
+  image = "/og.png",
   type = "website",
   publishedTime,
   keywords = "Muhammed Sarhan, Mo Sarhan, mosarhan, mosarhan.io, product designer Cairo, UI UX designer Egypt, senior product designer, design portfolio",
@@ -92,6 +92,7 @@ const allLd = jsonLd
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content="Muhammed Sarhan — Senior Product Designer, Cairo, Egypt" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -108,22 +109,38 @@ const allLd = jsonLd
 
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
-    <!-- Fonts -->
+    <!-- Fonts: non-blocking load -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      />
+    </noscript>
 
     <!-- Structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(allLd)} />
   </head>
   <body class="grain">
+    <!-- Skip to main content (keyboard / screen reader) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-[color:var(--color-ink)] focus:text-[color:var(--color-paper)] focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:no-underline"
+    >
+      Skip to main content
+    </a>
+
     <Cursor />
     <slot />
 

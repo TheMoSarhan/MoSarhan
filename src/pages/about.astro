@@ -52,7 +52,7 @@ const recognition = [
 >
   <Nav />
 
-  <main>
+  <main id="main-content">
     <PageHero eyebrow="About — 01">
       <Fragment slot="title">
         A designer raised in print,<br/>
@@ -144,7 +144,7 @@ const recognition = [
         <ul class="md:col-span-8 md:col-start-5 space-y-4 reveal">
           {recognition.map((r) => (
             <li class="serif text-2xl md:text-3xl flex items-baseline gap-4">
-              <span class="text-[color:var(--color-mute)] text-sm">✦</span>
+              <span class="text-[color:var(--color-mute)] text-sm" aria-hidden="true">✦</span>
               {r}
             </li>
           ))}
@@ -162,9 +162,9 @@ const recognition = [
           href={withBase("/contact")}
           class="inline-flex items-center gap-3 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] rounded-full pl-5 pr-2 py-2 text-sm self-start md:self-end hover:opacity-90 transition-opacity"
         >
-          Get in touch
+          Start a conversation
           <span class="grid place-items-center w-7 h-7 rounded-full bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </span>
         </a>
       </div>

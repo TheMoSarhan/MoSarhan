@@ -20,7 +20,7 @@ const creativeWorkLd = {
   "headline": project.title,
   "description": project.blurb,
   "url": `https://mosarhan.io/work/${project.slug}`,
-  "image": "https://mosarhan.io/og.svg",
+  "image": "https://mosarhan.io/og.png",
   "creator": { "@type": "Person", "name": "Muhammed Sarhan", "url": "https://mosarhan.io" },
   "author": { "@type": "Person", "name": "Muhammed Sarhan" },
   "datePublished": `${project.year}-01-01`,
@@ -41,7 +41,7 @@ const breadcrumbLd = {
 
 <Layout
   title={`${project.title} — Case Study by Muhammed Sarhan`}
-  description={`${project.blurb} — Case study by Muhammed Sarhan, senior product designer in Cairo. Role: ${project.role}.`}
+  description={`${project.blurb} — Case study by Muhammed Sarhan. Role: ${project.role}.`}
   type="article"
   publishedTime={`${project.year}-01-01`}
   keywords={`${project.title}, ${project.tag}, Muhammed Sarhan case study, product design portfolio`}
@@ -49,12 +49,12 @@ const breadcrumbLd = {
 >
   <Nav />
 
-  <main>
+  <main id="main-content">
     <!-- Hero -->
     <section class="px-6 md:px-10 pt-36 md:pt-44 pb-20 md:pb-24 border-b border-[color:var(--color-line)]">
       <div class="mx-auto max-w-[1280px]">
         <a href={withBase("/work")} class="inline-flex items-center gap-2 text-sm text-[color:var(--color-mute)] hover:text-[color:var(--color-ink)] mb-10">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
           All work
         </a>
 
@@ -80,7 +80,7 @@ const breadcrumbLd = {
           ["Team", project.team.join(" · ")],
         ].map(([k, v]) => (
           <div class="reveal">
-            <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-mute)] mb-2">{k}</div>
+            <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-2">{k}</div>
             <div class="text-sm leading-relaxed">{v}</div>
           </div>
         ))}
@@ -101,13 +101,13 @@ const breadcrumbLd = {
           </div>
 
           <!-- Massive monogram of project initials -->
-          <div class="col-span-12 row-span-4 relative flex items-center justify-center">
+          <div class="col-span-12 row-span-4 relative flex items-center justify-center" aria-hidden="true">
             <span class="serif italic text-white/15 leading-none text-[28vw] md:text-[22vw] select-none">
               {project.title.split(" ").map((w) => w[0]).join("").slice(0, 2)}
             </span>
           </div>
 
-          <!-- Bottom strip with project title and meta -->
+          <!-- Bottom strip -->
           <div class="col-span-12 row-span-1 relative px-6 md:px-10 pb-6 md:pb-8 flex items-end justify-between gap-6">
             <span class="serif text-2xl md:text-4xl truncate">{project.title}</span>
             <span class="text-xs uppercase tracking-[0.2em] text-white/50 hidden md:block">{project.tag}</span>
@@ -126,7 +126,7 @@ const breadcrumbLd = {
           <h2 class="serif text-3xl md:text-5xl">The brief, in plain terms.</h2>
           <p class="text-lg leading-relaxed text-[color:var(--color-mute)]">{project.context}</p>
           <div class="border-l-2 border-[color:var(--color-ink)] pl-6 py-2">
-            <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-mute)] mb-3">The challenge</div>
+            <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-3">The challenge</div>
             <p class="text-base md:text-lg leading-relaxed">{project.challenge}</p>
           </div>
         </div>
@@ -144,7 +144,7 @@ const breadcrumbLd = {
           <ol class="space-y-8">
             {project.approach.map((step, i) => (
               <li class="flex gap-6 border-t border-white/15 pt-6">
-                <span class="serif text-2xl text-white/40 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                <span class="serif text-2xl text-white/50 shrink-0">{String(i + 1).padStart(2, "0")}</span>
                 <p class="text-base md:text-lg leading-relaxed text-white/80">{step}</p>
               </li>
             ))}
@@ -175,7 +175,7 @@ const breadcrumbLd = {
           {project.outcomes.map((o) => (
             <div class="bg-[color:var(--color-paper)] p-8 md:p-10 reveal">
               <div class="serif text-5xl md:text-6xl">{o.metric}</div>
-              <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-mute)] mt-3">{o.label}</div>
+              <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mt-3">{o.label}</div>
             </div>
           ))}
         </div>
@@ -187,7 +187,7 @@ const breadcrumbLd = {
       <div class="mx-auto max-w-[1280px]">
         <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-8 reveal">05 — Reflection</div>
         <blockquote class="serif text-3xl md:text-5xl max-w-4xl leading-tight reveal">
-          “{project.reflection}”
+          "{project.reflection}"
         </blockquote>
       </div>
     </section>
@@ -204,7 +204,7 @@ const breadcrumbLd = {
               <h2 class="serif text-5xl md:text-8xl">{next.title}</h2>
               <span class="text-sm flex items-center gap-3">
                 Continue
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </span>
             </div>
           </div>
