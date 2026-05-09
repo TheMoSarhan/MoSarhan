@@ -9,11 +9,11 @@ import { projects } from "../../data/projects";
 
 <Layout
   title="Work — Selected Projects by Muhammed Sarhan"
-  description="Selected product design projects by Muhammed Sarhan — case studies in fintech, healthcare, brand identity, and 0→1 AI products. The brief, the decisions, the parts that didn't ship."
+  description="Case studies by Muhammed Sarhan — fintech, healthcare, brand, and 0→1 AI products. The brief, the decisions, and the parts that didn't ship."
   keywords="Muhammed Sarhan portfolio, product design case studies, UI UX projects Cairo, fintech design, healthcare design system, brand identity"
 >
   <Nav />
-  <main>
+  <main id="main-content">
     <PageHero eyebrow="Work — Index">
       <Fragment slot="title">
         Selected projects,<br/>
@@ -44,12 +44,12 @@ import { projects } from "../../data/projects";
                 {p.blurb}
               </p>
               <div class="mt-8 flex items-center justify-between">
-                <span class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/60">
+                <span class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/60">
                   {p.tag}
                 </span>
                 <span class="text-sm flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
                   Read case study
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                 </span>
               </div>
             </div>

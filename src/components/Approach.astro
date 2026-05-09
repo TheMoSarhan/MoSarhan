@@ -1,4 +1,6 @@
 ---
+import DecorativeNumber from "./DecorativeNumber.astro";
+
 const steps = [
   {
     n: "I",
@@ -24,10 +26,7 @@ const steps = [
 ---
 
 <section id="approach" class="px-6 md:px-10 py-24 md:py-40 relative overflow-hidden">
-  <!-- Decorative number -->
-  <div class="pointer-events-none select-none absolute -top-10 right-2 serif text-[28vw] md:text-[18vw] leading-none text-black/[0.035]">
-    04
-  </div>
+  <DecorativeNumber n="04" class="-top-10 right-2 md:text-[18vw]" />
 
   <div class="relative mx-auto max-w-[1280px]">
     <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-4 reveal">04 — Approach</div>

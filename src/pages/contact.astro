@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import DecorativeNumber from "../components/DecorativeNumber.astro";
 
 const faqs = [
   {
@@ -30,20 +31,17 @@ const faqs = [
 >
   <Nav />
 
-  <main>
+  <main id="main-content">
     <!-- Hero -->
     <section class="px-6 md:px-10 pt-36 md:pt-44 pb-20 md:pb-28 border-b border-[color:var(--color-line)] relative overflow-hidden">
-      <!-- Decorative oversized number -->
-      <div class="pointer-events-none select-none absolute -top-8 -right-2 serif text-[28vw] md:text-[18vw] leading-none text-black/[0.035]">
-        05
-      </div>
+      <DecorativeNumber n="05" class="-top-8 -right-2 md:text-[18vw]" />
 
       <div class="relative mx-auto max-w-[1280px]">
         <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-8 reveal">
           Contact — Say Hello
         </div>
         <h1 class="serif text-[44px] leading-[1.05] sm:text-7xl md:text-[112px] md:leading-[0.96] tracking-[-0.025em] text-balance">
-          <span class="block split">Liked what you saw?</span>
+          <span class="block split">Drop me a line.</span>
           <span class="block split"><em class="italic text-[color:var(--color-mute)]">My inbox</em> is open.</span>
         </h1>
 
@@ -63,14 +61,14 @@ const faqs = [
               data-cursor="hover"
             >
               mo@mosarhan.io
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Quick personal stats card row -->
+    <!-- Quick personal stats -->
     <section class="px-6 md:px-10 py-24 md:py-32">
       <div class="mx-auto max-w-[1280px] grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--color-line)] border border-[color:var(--color-line)]">
         {[
@@ -81,7 +79,7 @@ const faqs = [
         ].map(([k, v]) => (
           <div class="bg-[color:var(--color-paper)] p-8 md:p-10 reveal">
             <div class="serif text-2xl md:text-3xl">{k}</div>
-            <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-mute)] mt-3">{v}</div>
+            <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mt-3">{v}</div>
           </div>
         ))}
       </div>
