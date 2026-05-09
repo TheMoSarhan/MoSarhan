@@ -1,0 +1,45 @@
+---
+const steps = [
+  {
+    n: "I",
+    title: "Listen",
+    body: "I start by understanding the business, the people, and the problem — not the brief. The right answer often hides in what nobody said out loud.",
+  },
+  {
+    n: "II",
+    title: "Frame",
+    body: "I narrow the problem until it can fit on a single sheet of paper. If we can't agree on the question, no design will be the answer.",
+  },
+  {
+    n: "III",
+    title: "Make",
+    body: "I prototype early and often. Real pixels in real flows beat decks every time — and they expose the assumptions a wireframe will hide.",
+  },
+  {
+    n: "IV",
+    title: "Refine",
+    body: "I obsess over the last 10%: the typography, the motion, the empty states, the error copy. That's where craft lives.",
+  },
+];
+---
+
+<section id="approach" class="px-6 md:px-10 py-24 md:py-32">
+  <div class="mx-auto max-w-[1280px]">
+    <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-4 reveal">Approach</div>
+    <h2 class="serif text-5xl md:text-7xl max-w-3xl reveal">
+      A small process, <em class="italic">repeated</em> with intent.
+    </h2>
+
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--color-line)] border border-[color:var(--color-line)]">
+      {steps.map((s) => (
+        <div class="bg-[color:var(--color-paper)] p-8 md:p-10 reveal">
+          <div class="flex items-baseline justify-between mb-6">
+            <span class="serif text-2xl text-[color:var(--color-mute)]">{s.n}</span>
+            <span class="serif text-3xl">{s.title}</span>
+          </div>
+          <p class="text-[color:var(--color-mute)] leading-relaxed">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

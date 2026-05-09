@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow: string;
+}
+const { eyebrow } = Astro.props;
+const hasIntro = Astro.slots.has("intro");
+---
+
+<section class="relative pt-36 md:pt-44 pb-20 md:pb-28 px-6 md:px-10">
+  <div class="mx-auto max-w-[1280px]">
+    <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] reveal">
+      {eyebrow}
+    </div>
+
+    <h1 class="serif mt-8 text-[40px] leading-[1.05] sm:text-6xl md:text-[88px] md:leading-[0.98] text-balance reveal">
+      <slot name="title" />
+    </h1>
+
+    {hasIntro && (
+      <div class="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-12">
+        <div class="md:col-span-6 md:col-start-7 text-base md:text-lg leading-relaxed text-[color:var(--color-mute)] reveal">
+          <slot name="intro" />
+        </div>
+      </div>
+    )}
+  </div>
+</section>

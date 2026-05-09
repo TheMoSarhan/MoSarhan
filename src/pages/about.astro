@@ -1,0 +1,170 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import { withBase } from "../lib/url";
+
+const timeline = [
+  { year: "2024 — Now", role: "Lead Product Designer", org: "Independent" },
+  { year: "2022 — 2024", role: "Founding Designer", org: "Quill (YC W23)" },
+  { year: "2019 — 2022", role: "Senior Product Designer", org: "Atlas Health" },
+  { year: "2016 — 2019", role: "Product Designer", org: "Northwind" },
+  { year: "2014 — 2016", role: "Visual Designer", org: "Studio Karam, Cairo" },
+];
+
+const principles = [
+  {
+    n: "I",
+    title: "Restraint over reach",
+    body: "The interface that gets out of the way is the one that gets used. Subtraction is a feature.",
+  },
+  {
+    n: "II",
+    title: "Systems over screens",
+    body: "Any single screen is an artifact of a hundred upstream decisions. Fix the system, not the artifact.",
+  },
+  {
+    n: "III",
+    title: "Craft is the last 10%",
+    body: "Anyone can get to 90%. The work that endures lives in the details no one was asked to fix.",
+  },
+  {
+    n: "IV",
+    title: "Make to think",
+    body: "Decks debate ideas, prototypes test them. I'd rather build the wrong thing fast than discuss the right thing forever.",
+  },
+];
+
+const recognition = [
+  "It's Nice That — Studio of the Day, 2024",
+  "Awwwards — Site of the Day, 2023",
+  "Product Hunt — #1 Product of the Day, 2023",
+  "CSS Design Awards — UI Design Award, 2022",
+];
+---
+
+<Layout title="About — Mo Sarhan" description="A decade of designing for people, told in roles, principles, and a few honest opinions.">
+  <Nav />
+
+  <main>
+    <PageHero eyebrow="About — 01">
+      <Fragment slot="title">
+        A designer raised in print,<br/>
+        <em class="italic text-[color:var(--color-mute)]">rebuilt</em> in product.
+      </Fragment>
+      <Fragment slot="intro">
+        I'm Mo Sarhan. For the last ten years I've been helping founders and
+        teams turn ambitious ideas into products that don't embarrass them.
+        I lead with research, ship with engineers, and believe most software
+        would be better with half as many features.
+      </Fragment>
+    </PageHero>
+
+    <!-- Bio -->
+    <section class="px-6 md:px-10 py-24 md:py-32">
+      <div class="mx-auto max-w-[1280px] grid grid-cols-1 md:grid-cols-12 gap-10">
+        <div class="md:col-span-3 reveal">
+          <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)]">In short</div>
+        </div>
+        <div class="md:col-span-8 md:col-start-5 space-y-6 text-base md:text-lg leading-relaxed text-[color:var(--color-mute)] reveal">
+          <p>
+            I started in print at a small Cairo studio, where I learned that
+            spacing is a moral position and that a grid is only as good as the
+            decisions it forces you to make. I fell into product design when a
+            client needed a website, and I never quite found my way back to
+            paper.
+          </p>
+          <p>
+            Today I work mostly with early-stage teams — sometimes embedded as a
+            founding designer, sometimes brought in for a quarter to lead a
+            redesign or set up a system. I do my best work when the brief is
+            ambiguous and the stakes are real.
+          </p>
+          <p>
+            I write code well enough to keep engineers honest, run my own
+            research when I can, and care more about how a thing
+            <em class="text-[color:var(--color-ink)] not-italic">feels</em> than
+            how it photographs. The portfolio is on
+            <a href={withBase("/work")} class="text-[color:var(--color-ink)] underline underline-offset-4">/work</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="px-6 md:px-10 py-24 md:py-32 bg-[color:var(--color-ink)] text-[color:var(--color-paper)]">
+      <div class="mx-auto max-w-[1280px]">
+        <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-4 reveal">Principles</div>
+        <h2 class="serif text-4xl md:text-6xl max-w-3xl reveal">Four things I keep coming back to.</h2>
+
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/15 border border-white/15">
+          {principles.map((p) => (
+            <div class="bg-[color:var(--color-ink)] p-8 md:p-10 reveal">
+              <div class="flex items-baseline justify-between mb-6">
+                <span class="serif text-2xl text-white/40">{p.n}</span>
+                <span class="serif text-3xl">{p.title}</span>
+              </div>
+              <p class="text-white/70 leading-relaxed">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="px-6 md:px-10 py-24 md:py-32">
+      <div class="mx-auto max-w-[1280px] grid grid-cols-1 md:grid-cols-12 gap-10">
+        <div class="md:col-span-3 reveal">
+          <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)]">Where I've worked</div>
+        </div>
+        <ul class="md:col-span-8 md:col-start-5 border-y border-[color:var(--color-line)] reveal">
+          {timeline.map((t) => (
+            <li class="grid grid-cols-12 gap-4 py-6 border-b border-[color:var(--color-line)] last:border-b-0 items-baseline">
+              <span class="col-span-4 md:col-span-3 text-sm text-[color:var(--color-mute)]">{t.year}</span>
+              <span class="col-span-8 md:col-span-5 serif text-2xl md:text-3xl">{t.role}</span>
+              <span class="col-span-12 md:col-span-4 text-sm text-[color:var(--color-mute)] md:text-right">{t.org}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Recognition -->
+    <section class="px-6 md:px-10 py-24 md:py-32 border-t border-[color:var(--color-line)]">
+      <div class="mx-auto max-w-[1280px] grid grid-cols-1 md:grid-cols-12 gap-10">
+        <div class="md:col-span-3 reveal">
+          <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)]">Recognition</div>
+        </div>
+        <ul class="md:col-span-8 md:col-start-5 space-y-4 reveal">
+          {recognition.map((r) => (
+            <li class="serif text-2xl md:text-3xl flex items-baseline gap-4">
+              <span class="text-[color:var(--color-mute)] text-sm">✦</span>
+              {r}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="px-6 md:px-10 py-20 md:py-32 border-t border-[color:var(--color-line)]">
+      <div class="mx-auto max-w-[1280px] flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <h2 class="serif text-5xl md:text-7xl max-w-3xl">
+          That's the short version. The longer one is over coffee.
+        </h2>
+        <a
+          href={withBase("/contact")}
+          class="inline-flex items-center gap-3 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] rounded-full pl-5 pr-2 py-2 text-sm self-start md:self-end hover:opacity-90 transition-opacity"
+        >
+          Get in touch
+          <span class="grid place-items-center w-7 h-7 rounded-full bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

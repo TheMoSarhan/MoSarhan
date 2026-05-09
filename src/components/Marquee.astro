@@ -1,0 +1,24 @@
+---
+const items = [
+  "Product Design",
+  "Design Systems",
+  "Brand Identity",
+  "UX Strategy",
+  "Prototyping",
+  "Design Leadership",
+  "Webflow & Framer",
+  "Research",
+];
+const loop = [...items, ...items];
+---
+
+<div class="border-y border-[color:var(--color-line)] py-6 overflow-hidden">
+  <div class="flex gap-12 whitespace-nowrap marquee-track w-max">
+    {loop.map((t) => (
+      <span class="serif text-3xl md:text-4xl flex items-center gap-12">
+        {t}
+        <span class="text-[color:var(--color-mute)]">✦</span>
+      </span>
+    ))}
+  </div>
+</div>

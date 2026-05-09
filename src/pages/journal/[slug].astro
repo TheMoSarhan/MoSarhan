@@ -1,0 +1,98 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { withBase } from "../../lib/url";
+import { posts, getPost } from "../../data/posts";
+
+export function getStaticPaths() {
+  return posts.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = getPost(slug!)!;
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+
+const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+const idx = sorted.findIndex((p) => p.slug === post.slug);
+const next = sorted[(idx + 1) % sorted.length];
+---
+
+<Layout title={`${post.title} — Journal — Mo Sarhan`} description={post.excerpt}>
+  <Nav />
+
+  <main>
+    <article>
+      <!-- Header -->
+      <section class="px-6 md:px-10 pt-40 md:pt-48 pb-12 border-b border-[color:var(--color-line)]">
+        <div class="mx-auto max-w-[820px]">
+          <a href={withBase("/journal")} class="inline-flex items-center gap-2 text-sm text-[color:var(--color-mute)] hover:text-[color:var(--color-ink)] mb-12">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
+            All notes
+          </a>
+
+          <div class="flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] reveal">
+            <span>{post.tag}</span>
+            <span class="w-8 h-px bg-[color:var(--color-line)]"></span>
+            <span>{fmt(post.date)}</span>
+            <span class="w-8 h-px bg-[color:var(--color-line)]"></span>
+            <span>{post.readingMinutes} min read</span>
+          </div>
+
+          <h1 class="serif mt-8 text-4xl sm:text-5xl md:text-7xl md:leading-[1.02] reveal">
+            {post.title}
+          </h1>
+
+          <p class="mt-8 text-lg md:text-xl leading-relaxed text-[color:var(--color-mute)] reveal">
+            {post.excerpt}
+          </p>
+        </div>
+      </section>
+
+      <!-- Body -->
+      <section class="px-6 md:px-10 py-24 md:py-32">
+        <div class="mx-auto max-w-[680px] space-y-7 reveal">
+          {post.body.map((paragraph, i) => (
+            <p class:list={[
+              "leading-[1.8]",
+              i === 0 ? "text-xl md:text-2xl serif text-[color:var(--color-ink)]" : "text-base md:text-lg text-[color:var(--color-ink)]/85",
+            ]}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      <!-- Sign-off -->
+      <section class="px-6 md:px-10 pb-16">
+        <div class="mx-auto max-w-[680px] border-t border-[color:var(--color-line)] pt-10 flex items-center justify-between text-sm text-[color:var(--color-mute)]">
+          <span>— Mo Sarhan</span>
+          <a href={withBase("/contact")} class="underline underline-offset-4 hover:text-[color:var(--color-ink)]">
+            Reply by email
+          </a>
+        </div>
+      </section>
+    </article>
+
+    <!-- Next post -->
+    <section class="border-t border-[color:var(--color-line)]">
+      <a href={withBase(`/journal/${next.slug}`)} class="group block px-6 md:px-10 py-24 md:py-32 transition-colors hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-paper)]">
+        <div class="mx-auto max-w-[1280px]">
+          <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/60 mb-6">
+            Next note
+          </div>
+          <div class="flex items-end justify-between gap-8 flex-wrap">
+            <h2 class="serif text-4xl md:text-7xl max-w-3xl">{next.title}</h2>
+            <span class="text-sm flex items-center gap-3">
+              Continue reading
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
