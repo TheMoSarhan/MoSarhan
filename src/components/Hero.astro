@@ -27,13 +27,11 @@
   </div>
 
   <div class="relative mx-auto max-w-[1280px]">
-    <!-- Status pill -->
-    <div class="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] reveal border border-[color:var(--color-line)] rounded-full px-4 py-2 bg-white/40 backdrop-blur">
-      <span class="relative inline-flex w-1.5 h-1.5">
-        <span class="absolute inset-0 rounded-full bg-emerald-500"></span>
-        <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-60"></span>
-      </span>
-      Available for select engagements — Q3 2026
+    <!-- Eyebrow -->
+    <div class="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] reveal">
+      <span class="w-8 h-px bg-[color:var(--color-mute)]"></span>
+      Portfolio — Vol. 01
+      <span class="w-8 h-px bg-[color:var(--color-mute)]"></span>
     </div>
 
     <!-- Big serif headline with split-word reveal -->
@@ -47,13 +45,13 @@
     <div class="mt-12 grid grid-cols-1 md:grid-cols-12 gap-8">
       <div class="md:col-span-6 md:col-start-1 reveal">
         <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-4">
-          Muhammed Sarhan — Toronto · Cairo
+          Muhammed Sarhan — Cairo, Egypt
         </div>
         <p class="text-base md:text-lg leading-relaxed text-[color:var(--color-mute)] max-w-lg">
-          A decade designing products at the intersection of brand, interface,
-          and systems. I help founders and teams turn ambitious ideas into
-          things people actually want to use — across fintech, healthcare,
-          e-commerce, and digital media.
+          A decade designing at the intersection of brand, interface, and
+          systems — across fintech, healthcare, e-commerce, and digital
+          media. This is a small archive of the work, the thinking behind
+          it, and the things I keep coming back to.
         </p>
       </div>
 
@@ -64,7 +62,7 @@
             class="group inline-flex items-center gap-3 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] rounded-full pl-5 pr-2 py-2 text-sm hover:opacity-90 transition-opacity"
             data-cursor="hover"
           >
-            See selected work
+            Enter the archive
             <span class="grid place-items-center w-7 h-7 rounded-full bg-[color:var(--color-paper)] text-[color:var(--color-ink)] group-hover:translate-x-0.5 transition-transform">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </span>
@@ -79,8 +77,8 @@
     {[
       ["10+", "Years designing"],
       ["40+", "Products shipped"],
-      ["12", "Industries served"],
-      ["2", "Continents based"],
+      ["12", "Industries explored"],
+      ["1", "Cairo, late at night"],
     ].map(([k, v]) => (
       <div class="reveal">
         <div class="serif text-5xl md:text-6xl tracking-tight">{k}</div>

@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = "Muhammed Sarhan — Senior Product Designer",
-  description = "Muhammed Sarhan is a senior product designer based between Toronto and Cairo. A decade of work for fintech, healthcare, e-commerce, and digital media — designed with restraint, shipped with intent.",
+  description = "Muhammed Sarhan is a senior product designer based in Cairo, Egypt. A decade of work for fintech, healthcare, e-commerce, and digital media — designed with restraint, shipped with intent.",
 } = Astro.props;
 ---
 
@@ -81,9 +81,9 @@ const {
           const now = new Date().toLocaleTimeString("en-GB", {
             hour: "2-digit",
             minute: "2-digit",
-            timeZone: "America/Toronto",
+            timeZone: "Africa/Cairo",
           });
-          clockEl.textContent = `${now} TOR`;
+          clockEl.textContent = `${now} CAI`;
         };
         tick();
         setInterval(tick, 1000 * 30);
