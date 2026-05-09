@@ -1,39 +1,70 @@
 ---
 const stack = [
-  "Figma",
-  "Framer",
-  "Webflow",
-  "Cursor",
-  "Linear",
-  "Notion",
-  "After Effects",
-  "Principle",
+  "Figma", "Framer", "Webflow", "Cursor",
+  "Linear", "Notion", "Principle", "After Effects",
+  "Protopie", "Storybook",
 ];
 ---
 
-<section id="about" class="px-6 md:px-10 py-24 md:py-32 bg-[color:var(--color-ink)] text-[color:var(--color-paper)]">
-  <div class="mx-auto max-w-[1280px] grid grid-cols-1 md:grid-cols-12 gap-10">
+<section id="about" class="px-6 md:px-10 py-24 md:py-40 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] relative overflow-hidden" data-cursor-mode="dark">
+  <!-- Decorative oversized number -->
+  <div class="pointer-events-none select-none absolute -bottom-16 -left-6 serif text-[28vw] md:text-[20vw] leading-none text-white/[0.04]">
+    03
+  </div>
+
+  <div class="relative mx-auto max-w-[1280px] grid grid-cols-1 md:grid-cols-12 gap-10">
     <div class="md:col-span-4 reveal">
-      <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-4">About</div>
-      <h2 class="serif text-5xl md:text-6xl">A designer, first.</h2>
+      <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-4">About — Long Story Short</div>
+      <h2 class="serif text-5xl md:text-7xl text-balance">A designer, <em class="italic">first</em>.</h2>
+
+      <!-- Circular monogram, Robert-style -->
+      <div class="mt-12 hidden md:block">
+        <svg viewBox="0 0 220 220" class="w-44 h-44">
+          <defs>
+            <path id="circle-text" d="M 110, 110 m -90, 0 a 90,90 0 1,1 180,0 a 90,90 0 1,1 -180,0" />
+          </defs>
+          <circle cx="110" cy="110" r="92" fill="none" stroke="white" stroke-opacity="0.2" stroke-width="1"/>
+          <text font-size="11" fill="white" fill-opacity="0.6" letter-spacing="3" font-family="Inter, sans-serif">
+            <textPath href="#circle-text" startOffset="0">
+              MUHAMMED SARHAN ★ TORONTO ★ CAIRO ★ PRODUCT DESIGN ★
+            </textPath>
+          </text>
+          <text x="50%" y="56%" text-anchor="middle" font-family="Instrument Serif" font-style="italic" font-size="64" fill="white">m</text>
+        </svg>
+      </div>
     </div>
 
-    <div class="md:col-span-7 md:col-start-6 space-y-6 text-base md:text-lg leading-relaxed text-white/80 reveal">
+    <div class="md:col-span-7 md:col-start-6 space-y-7 text-base md:text-lg leading-relaxed text-white/80 reveal">
       <p>
-        I started in print, fell into product, and never looked back. Today I lead
-        design for early-stage teams that care as much about how a thing
-        <em>feels</em> as how it works — and I write code well enough to keep
-        engineers honest.
+        I was born in Cairo and learned to design in print, where spacing is a
+        moral position and a grid is only as good as the decisions it forces
+        you to make. I fell into product when a client needed a website, and
+        I never quite found my way back to paper.
       </p>
       <p>
-        My work tends to be quiet on the surface and loud underneath: clean
-        interfaces, sharp typography, opinionated systems, and a lot of cut
-        features. The best design decisions are the ones nobody notices.
+        A decade later, I work between Toronto and Cairo — sometimes embedded
+        as a senior designer in a small product team, sometimes brought in
+        for a quarter to lead a redesign or set up a system. I've shipped for
+        fintech, healthcare, e-commerce, government, on-demand, and a long
+        list of digital media companies whose names you'd recognise.
       </p>
       <p>
-        Outside of work I sketch architecture, brew unreasonable amounts of
-        coffee, and occasionally write about the craft of design.
+        I write code well enough to keep engineers honest, run my own
+        research when I can, and care more about how a thing
+        <em class="text-white not-italic">feels</em> than how it photographs.
+        The best design decisions are the ones nobody notices.
       </p>
+
+      <div class="pt-8 border-t border-white/15 grid grid-cols-2 gap-8">
+        <div>
+          <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Speaks</div>
+          <div class="serif text-2xl">English · Arabic</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Reads</div>
+          <div class="serif text-2xl">Type, brand books, complaints</div>
+        </div>
+      </div>
 
       <div class="pt-8 border-t border-white/15">
         <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-4">Toolkit</div>

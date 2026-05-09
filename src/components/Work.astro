@@ -1,44 +1,77 @@
 ---
 import { withBase } from "../lib/url";
 import { projects } from "../data/projects";
+
+// Generative pattern map per project — used for the hover preview.
+const visuals: Record<string, "stripes" | "dots" | "grid" | "block"> = {
+  "northwind-banking": "block",
+  "atlas-health": "grid",
+  "helio-studio": "stripes",
+  "quill": "dots",
+};
 ---
 
-<section id="work" class="px-6 md:px-10 py-24 md:py-32">
+<section id="work" class="px-6 md:px-10 py-24 md:py-40 relative">
   <div class="mx-auto max-w-[1280px]">
-    <div class="flex items-end justify-between gap-8 mb-12 md:mb-16">
+    <div class="flex items-end justify-between gap-8 mb-16 md:mb-24">
       <div>
         <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-4 reveal">
-          Selected Work
+          02 — Selected Work
         </div>
-        <h2 class="serif text-5xl md:text-7xl reveal">A decade in <em class="italic">edits</em>.</h2>
+        <h2 class="serif text-5xl md:text-8xl reveal text-balance">
+          A decade <em class="italic">in edits</em>.
+        </h2>
       </div>
-      <a href={withBase("/work")} class="hidden md:inline text-sm underline underline-offset-4 text-[color:var(--color-mute)] hover:text-[color:var(--color-ink)]">
+      <a href={withBase("/work")} class="hidden md:inline text-sm underline underline-offset-4 text-[color:var(--color-mute)] hover:text-[color:var(--color-ink)]" data-cursor="hover">
         View all projects →
       </a>
     </div>
 
     <ul class="border-t border-[color:var(--color-line)]">
-      {projects.map((p) => (
-        <li class="group border-b border-[color:var(--color-line)] reveal">
-          <a href={withBase(`/work/${p.slug}`)} class="grid grid-cols-12 gap-4 md:gap-8 items-center py-8 md:py-10 transition-colors hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-paper)] px-2 md:px-6 -mx-2 md:-mx-6">
-            <span class="col-span-2 md:col-span-1 text-xs tracking-widest text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/60">
-              {p.n}
-            </span>
-            <span class="serif col-span-10 md:col-span-4 text-2xl md:text-4xl">
-              {p.title}
-            </span>
-            <span class="hidden md:block md:col-span-3 text-sm text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/70">
-              {p.tag}
-            </span>
-            <span class="hidden md:block md:col-span-3 text-sm text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/70">
-              {p.blurb}
-            </span>
-            <span class="col-span-12 md:col-span-1 md:text-right text-sm text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/70">
-              {p.year}
-            </span>
-          </a>
-        </li>
-      ))}
+      {projects.map((p) => {
+        const variant = visuals[p.slug] ?? "block";
+        return (
+          <li class="group border-b border-[color:var(--color-line)] reveal relative">
+            <a
+              href={withBase(`/work/${p.slug}`)}
+              class="grid grid-cols-12 gap-4 md:gap-8 items-center py-8 md:py-12 transition-colors hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-paper)] px-2 md:px-6 -mx-2 md:-mx-6 relative"
+              data-cursor="hover"
+            >
+              <span class="col-span-2 md:col-span-1 text-xs tracking-widest text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/60">
+                {p.n}
+              </span>
+              <span class="serif col-span-10 md:col-span-4 text-3xl md:text-5xl">
+                {p.title}
+              </span>
+              <span class="hidden md:block md:col-span-3 text-sm text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/70">
+                {p.tag}
+              </span>
+              <span class="hidden md:block md:col-span-3 text-sm text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/70">
+                {p.blurb}
+              </span>
+              <span class="col-span-12 md:col-span-1 md:text-right text-sm text-[color:var(--color-mute)] group-hover:text-[color:var(--color-paper)]/70 flex md:justify-end items-center gap-2">
+                {p.year}
+                <svg class="opacity-0 group-hover:opacity-100 transition-opacity" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </span>
+
+              <!-- Hover preview thumbnail (desktop only) -->
+              <span class="hidden md:block pointer-events-none absolute right-32 top-1/2 -translate-y-1/2 w-44 h-28 rounded-sm overflow-hidden opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 origin-center bg-[color:var(--color-paper)]">
+                <span class={[
+                  "block w-full h-full relative",
+                  variant === "stripes" && "tile-stripes",
+                  variant === "dots" && "tile-dots",
+                  variant === "grid" && "tile-grid",
+                ].filter(Boolean).join(" ")}
+                  style="background-color: #0a0a0a;">
+                  <span class="absolute inset-0 flex items-center justify-center text-white/40 serif italic text-3xl">
+                    {p.title.split(" ").map((w) => w[0]).join("").slice(0, 2)}
+                  </span>
+                </span>
+              </span>
+            </a>
+          </li>
+        );
+      })}
     </ul>
   </div>
 </section>

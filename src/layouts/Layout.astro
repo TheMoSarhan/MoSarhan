@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Cursor from "../components/Cursor.astro";
 
 interface Props {
   title?: string;
@@ -7,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = "Mo Sarhan — Lead Product Designer",
-  description = "Mo Sarhan is a lead product & UI/UX designer crafting clear, human, and considered digital products.",
+  title = "Muhammed Sarhan — Senior Product Designer",
+  description = "Muhammed Sarhan is a senior product designer based between Toronto and Cairo. A decade of work for fintech, healthcare, e-commerce, and digital media — designed with restraint, shipped with intent.",
 } = Astro.props;
 ---
 
@@ -36,10 +37,11 @@ const {
     />
   </head>
   <body class="grain">
+    <Cursor />
     <slot />
 
     <script>
-      // Reveal-on-scroll
+      // ------- Reveal-on-scroll -------
       const io = new IntersectionObserver(
         (entries) => {
           for (const e of entries) {
@@ -53,19 +55,68 @@ const {
       );
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-      // Live clock in footer
+      // ------- Split-text reveal: wrap each word in a span ------
+      document.querySelectorAll<HTMLElement>(".split").forEach((node) => {
+        const text = node.textContent || "";
+        node.innerHTML = "";
+        const words = text.trim().split(/\s+/);
+        words.forEach((word, i) => {
+          const wrap = document.createElement("span");
+          wrap.className = "split-word";
+          wrap.style.setProperty("--i", String(i));
+          const inner = document.createElement("span");
+          inner.textContent = word;
+          wrap.appendChild(inner);
+          node.appendChild(wrap);
+          if (i < words.length - 1) node.appendChild(document.createTextNode(" "));
+        });
+        node.classList.add("split-line");
+      });
+      document.querySelectorAll(".split-line").forEach((el) => io.observe(el));
+
+      // ------- Live clock in footer ------
       const clockEl = document.getElementById("clock");
       if (clockEl) {
         const tick = () => {
           const now = new Date().toLocaleTimeString("en-GB", {
             hour: "2-digit",
             minute: "2-digit",
-            timeZone: "Africa/Cairo",
+            timeZone: "America/Toronto",
           });
-          clockEl.textContent = `${now} CAI`;
+          clockEl.textContent = `${now} TOR`;
         };
         tick();
         setInterval(tick, 1000 * 30);
+      }
+
+      // ------- Hero parallax ------
+      const heroEl = document.getElementById("hero-parallax");
+      if (heroEl && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        const targets = heroEl.querySelectorAll<HTMLElement>(".parallax");
+        const onMove = (e: MouseEvent) => {
+          const rect = heroEl.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          targets.forEach((t) => {
+            const depth = parseFloat(t.dataset.depth || "10");
+            t.style.transform = `translate3d(${x * depth}px, ${y * depth}px, 0)`;
+          });
+        };
+        heroEl.addEventListener("mousemove", onMove);
+      }
+
+      // ------- Footer wordmark scroll-scale ------
+      const wordmark = document.getElementById("footer-wordmark");
+      if (wordmark) {
+        const onScroll = () => {
+          const rect = wordmark.getBoundingClientRect();
+          const v = window.innerHeight;
+          const p = Math.max(0, Math.min(1, 1 - rect.top / v));
+          wordmark.style.transform = `scale(${0.94 + p * 0.06})`;
+          wordmark.style.opacity = String(0.65 + p * 0.35);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
       }
     </script>
   </body>

@@ -1,56 +1,98 @@
 ---
 ---
 
-<section id="top" class="relative pt-40 md:pt-48 pb-24 md:pb-32 px-6 md:px-10">
-  <div class="mx-auto max-w-[1280px]">
-    <div class="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] reveal">
-      <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-      Available for select engagements — 2026
-    </div>
-
-    <h1 class="serif mt-8 text-[44px] leading-[1.05] sm:text-7xl md:text-[104px] md:leading-[0.98] reveal">
-      Designing calm,<br/>
-      <em class="italic text-[color:var(--color-mute)]">considered</em> products<br/>
-      for an over-designed web.
-    </h1>
-
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-      <p class="md:col-span-6 md:col-start-7 text-base md:text-lg leading-relaxed text-[color:var(--color-mute)] reveal">
-        I'm <span class="text-[color:var(--color-ink)]">Mo Sarhan</span> — a lead product
-        designer working at the intersection of brand, interface, and systems thinking.
-        For a decade I've helped founders and teams turn ambitious ideas into products
-        people actually want to use.
-      </p>
-    </div>
-
-    <div class="mt-16 flex flex-wrap items-center gap-4 reveal">
-      <a
-        href="#work"
-        class="group inline-flex items-center gap-3 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] rounded-full pl-5 pr-2 py-2 text-sm hover:opacity-90 transition-opacity"
-      >
-        See selected work
-        <span class="grid place-items-center w-7 h-7 rounded-full bg-[color:var(--color-paper)] text-[color:var(--color-ink)] group-hover:translate-x-0.5 transition-transform">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-      <a href="#contact" class="text-sm underline underline-offset-4 decoration-[color:var(--color-line)] hover:decoration-[color:var(--color-ink)]">
-        Or start a conversation
-      </a>
+<section id="hero-parallax" class="relative pt-32 md:pt-40 pb-20 md:pb-28 px-6 md:px-10 overflow-hidden">
+  <!-- Faint background grid -->
+  <div class="parallax pointer-events-none absolute inset-0 opacity-[0.05]" data-depth="6">
+    <div class="absolute inset-0"
+      style="background-image:linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px); background-size: 96px 96px;">
     </div>
   </div>
 
-  <!-- Hairline divider with running stats -->
-  <div class="mx-auto max-w-[1280px] mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[color:var(--color-line)] pt-8">
+  <!-- Floating monogram (visual placeholder for portrait) -->
+  <div class="parallax pointer-events-none absolute -right-12 top-32 md:right-[6%] md:top-32 hidden md:block" data-depth="-22">
+    <svg viewBox="0 0 400 400" class="w-[420px] h-[420px] xl:w-[560px] xl:h-[560px] opacity-90">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0a0a0a"/>
+          <stop offset="100%" stop-color="#2c2c2c"/>
+        </linearGradient>
+      </defs>
+      <circle cx="200" cy="200" r="198" fill="url(#g)"/>
+      <text x="50%" y="58%" text-anchor="middle"
+            font-family="Instrument Serif, serif" font-style="italic"
+            font-size="280" fill="#f6f5f2">m</text>
+      <circle cx="200" cy="200" r="196" fill="none" stroke="#f6f5f2" stroke-opacity="0.08" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="relative mx-auto max-w-[1280px]">
+    <!-- Status pill -->
+    <div class="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] reveal border border-[color:var(--color-line)] rounded-full px-4 py-2 bg-white/40 backdrop-blur">
+      <span class="relative inline-flex w-1.5 h-1.5">
+        <span class="absolute inset-0 rounded-full bg-emerald-500"></span>
+        <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-60"></span>
+      </span>
+      Available for select engagements — Q3 2026
+    </div>
+
+    <!-- Big serif headline with split-word reveal -->
+    <h1 class="serif mt-10 text-[40px] leading-[1.04] sm:text-7xl md:text-[112px] md:leading-[0.96] tracking-[-0.025em] text-balance">
+      <span class="block split">Senior product designer</span>
+      <span class="block split"><em class="italic text-[color:var(--color-mute)]">crafting</em> calm,</span>
+      <span class="block split">considered software.</span>
+    </h1>
+
+    <!-- Subheadline -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div class="md:col-span-6 md:col-start-1 reveal">
+        <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-4">
+          Muhammed Sarhan — Toronto · Cairo
+        </div>
+        <p class="text-base md:text-lg leading-relaxed text-[color:var(--color-mute)] max-w-lg">
+          A decade designing products at the intersection of brand, interface,
+          and systems. I help founders and teams turn ambitious ideas into
+          things people actually want to use — across fintech, healthcare,
+          e-commerce, and digital media.
+        </p>
+      </div>
+
+      <div class="md:col-span-4 md:col-start-9 flex md:items-end md:justify-end reveal">
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href="#work"
+            class="group inline-flex items-center gap-3 bg-[color:var(--color-ink)] text-[color:var(--color-paper)] rounded-full pl-5 pr-2 py-2 text-sm hover:opacity-90 transition-opacity"
+            data-cursor="hover"
+          >
+            See selected work
+            <span class="grid place-items-center w-7 h-7 rounded-full bg-[color:var(--color-paper)] text-[color:var(--color-ink)] group-hover:translate-x-0.5 transition-transform">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="relative mx-auto max-w-[1280px] mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-y-8 border-t border-[color:var(--color-line)] pt-10">
     {[
       ["10+", "Years designing"],
-      ["40+", "Shipped products"],
-      ["12", "Industries"],
-      ["4", "Continents"],
+      ["40+", "Products shipped"],
+      ["12", "Industries served"],
+      ["2", "Continents based"],
     ].map(([k, v]) => (
       <div class="reveal">
-        <div class="serif text-4xl md:text-5xl">{k}</div>
-        <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-mute)] mt-2">{v}</div>
+        <div class="serif text-5xl md:text-6xl tracking-tight">{k}</div>
+        <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-mute)] mt-3">{v}</div>
       </div>
     ))}
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="relative mx-auto max-w-[1280px] mt-20 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)]">
+    <span>Scroll</span>
+    <span class="w-12 h-px bg-[color:var(--color-mute)]"></span>
+    <span>The work below</span>
   </div>
 </section>

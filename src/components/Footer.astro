@@ -2,20 +2,48 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="px-6 md:px-10 pt-16 pb-10 border-t border-[color:var(--color-line)]">
+<footer class="px-6 md:px-10 pt-20 pb-10 border-t border-[color:var(--color-line)] overflow-hidden">
   <div class="mx-auto max-w-[1280px]">
-    <div class="serif text-[18vw] md:text-[14vw] leading-[0.85] tracking-tight select-none">
-      moSarhan<span class="text-[color:var(--color-mute)]">.io</span>
+    <!-- Top: monogram + meta -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16">
+      <div class="md:col-span-3">
+        <svg viewBox="0 0 200 200" class="w-32 h-32">
+          <circle cx="100" cy="100" r="98" fill="#0a0a0a"/>
+          <text x="50%" y="58%" text-anchor="middle" font-family="Instrument Serif" font-style="italic" font-size="100" fill="#f6f5f2">m</text>
+        </svg>
+        <div class="mt-6 text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)]">
+          Designed & built<br/>in the open. 2026.
+        </div>
+      </div>
+
+      <div class="md:col-span-3 md:col-start-5">
+        <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-3">Reach me</div>
+        <a href="mailto:mo@mosarhan.io" class="serif text-2xl underline underline-offset-4 decoration-[color:var(--color-line)] hover:decoration-[color:var(--color-ink)]" data-cursor="hover">
+          mo@mosarhan.io
+        </a>
+      </div>
+
+      <div class="md:col-span-3 md:col-start-9">
+        <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-mute)] mb-3">Based</div>
+        <div class="serif text-2xl">Toronto · Cairo</div>
+        <div class="text-sm text-[color:var(--color-mute)] mt-1"><span id="clock">—:—</span></div>
+      </div>
+    </div>
+
+    <!-- Oversized scroll-reactive wordmark -->
+    <div id="footer-wordmark" class="serif leading-[0.82] tracking-[-0.04em] select-none origin-bottom transition-transform duration-300">
+      <div class="text-[22vw] md:text-[16vw]">
+        moSarhan<span class="text-[color:var(--color-mute)]">.io</span>
+      </div>
     </div>
 
     <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-[color:var(--color-mute)]">
-      <div>© {year} Mo Sarhan. All rights reserved.</div>
+      <div>© {year} Muhammed Sarhan. All rights reserved.</div>
       <div class="md:text-center">
-        Cairo, Egypt — <span id="clock">—:—</span>
+        Made with restraint, in Toronto.
       </div>
       <div class="md:text-right">
-        Designed & built with care.
-        <a href="#top" class="ml-2 underline underline-offset-4 hover:text-[color:var(--color-ink)]">Back to top ↑</a>
+        <a href="#top" class="underline underline-offset-4 hover:text-[color:var(--color-ink)]" data-cursor="hover">Back to top ↑</a>
       </div>
     </div>
   </div>
