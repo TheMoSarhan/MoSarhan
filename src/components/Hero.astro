@@ -9,20 +9,51 @@
     </div>
   </div>
 
-  <!-- Floating monogram (visual element) -->
-  <div class="parallax pointer-events-none absolute -right-12 top-32 md:right-[6%] md:top-32 hidden md:block" data-depth="-22">
-    <svg aria-hidden="true" viewBox="0 0 400 400" class="w-[420px] h-[420px] xl:w-[560px] xl:h-[560px] opacity-90">
-      <defs>
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#0a0a0a"/>
-          <stop offset="100%" stop-color="#2c2c2c"/>
-        </linearGradient>
-      </defs>
-      <circle cx="200" cy="200" r="198" fill="url(#g)"/>
-      <text x="50%" y="58%" text-anchor="middle"
-            font-family="Instrument Serif, serif" font-style="italic"
-            font-size="280" fill="#f6f5f2">m</text>
-      <circle cx="200" cy="200" r="196" fill="none" stroke="#f6f5f2" stroke-opacity="0.08" stroke-width="1"/>
+  <!-- Floating precision mark (decorative) -->
+  <div class="parallax pointer-events-none absolute -right-16 top-20 md:right-[3%] md:top-20 hidden md:block" data-depth="-22">
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 480 480"
+      class="w-[400px] h-[400px] xl:w-[500px] xl:h-[500px] opacity-[0.13]"
+      fill="none"
+      stroke="var(--color-ink)"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <!-- Outer ring -->
+      <circle cx="240" cy="240" r="228" stroke-width="0.8"/>
+      <!-- Concentric rings -->
+      <circle cx="240" cy="240" r="171" stroke-width="0.5" stroke-opacity="0.7"/>
+      <circle cx="240" cy="240" r="114" stroke-width="0.5" stroke-opacity="0.5"/>
+      <circle cx="240" cy="240" r="57"  stroke-width="0.5" stroke-opacity="0.4"/>
+      <!-- Crosshairs -->
+      <line x1="12"  y1="240" x2="468" y2="240" stroke-width="0.5" stroke-opacity="0.75"/>
+      <line x1="240" y1="12"  x2="240" y2="468" stroke-width="0.5" stroke-opacity="0.75"/>
+      <!-- 45° diagonals -->
+      <line x1="79"  y1="79"  x2="401" y2="401" stroke-width="0.4" stroke-opacity="0.45"/>
+      <line x1="401" y1="79"  x2="79"  y2="401" stroke-width="0.4" stroke-opacity="0.45"/>
+      <!-- Cardinal tick marks -->
+      <line x1="468" y1="240" x2="448" y2="240" stroke-width="1.5"/>
+      <line x1="240" y1="12"  x2="240" y2="32"  stroke-width="1.5"/>
+      <line x1="12"  y1="240" x2="32"  y2="240" stroke-width="1.5"/>
+      <line x1="240" y1="468" x2="240" y2="448" stroke-width="1.5"/>
+      <!-- 30° interval ticks -->
+      <line x1="437.4" y1="354.0" x2="425.3" y2="347.0" stroke-width="0.75"/>
+      <line x1="354.0" y1="437.4" x2="347.0" y2="425.3" stroke-width="0.75"/>
+      <line x1="126.0" y1="437.4" x2="133.0" y2="425.3" stroke-width="0.75"/>
+      <line x1="42.6"  y1="354.0" x2="54.7"  y2="347.0" stroke-width="0.75"/>
+      <line x1="42.6"  y1="126.0" x2="54.7"  y2="133.0" stroke-width="0.75"/>
+      <line x1="126.0" y1="42.6"  x2="133.0" y2="54.7"  stroke-width="0.75"/>
+      <line x1="354.0" y1="42.6"  x2="347.0" y2="54.7"  stroke-width="0.75"/>
+      <line x1="437.4" y1="126.0" x2="425.3" y2="133.0" stroke-width="0.75"/>
+      <!-- Dot markers at diagonal × middle-ring intersections -->
+      <circle cx="360.9" cy="360.9" r="2.5" fill="var(--color-ink)" stroke="none"/>
+      <circle cx="119.1" cy="360.9" r="2.5" fill="var(--color-ink)" stroke="none"/>
+      <circle cx="119.1" cy="119.1" r="2.5" fill="var(--color-ink)" stroke="none"/>
+      <circle cx="360.9" cy="119.1" r="2.5" fill="var(--color-ink)" stroke="none"/>
+      <!-- Center marker -->
+      <circle cx="240" cy="240" r="12"  stroke-width="0.75"/>
+      <circle cx="240" cy="240" r="3.5" fill="var(--color-ink)" stroke="none"/>
     </svg>
   </div>
 
